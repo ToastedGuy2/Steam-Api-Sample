@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -11,7 +13,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Steam.Entities;
 using Steam.Repositories;
+using Steam.Repositories.Generic;
+using Steam.Services;
+using Steam.Services.Generic;
 
 namespace Steam.API
 {
@@ -27,10 +33,20 @@ namespace Steam.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers(setupAction =>
+            {
+                setupAction.ReturnHttpNotAcceptable = true;
+            }).AddXmlDataContractSerializerFormatters(); ;
+
             services.AddDbContext<SteamDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+            services.AddScoped<IGenericRepository<Publisher>, GenericRepository<Publisher>>();
+            services.AddScoped<IGenericService<Publisher>, GenericService<Publisher>>();
+            services.AddScoped<IPublisherRepository, PublisherRepository>();
+            services.AddScoped<IPublisherService, PublisherService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,6 +55,19 @@ namespace Steam.API
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                app.UseExceptionHandler(appBuilder =>
+               {
+                   appBuilder.Run(async context =>
+                   {
+                       context.Response.StatusCode = 500;
+                       await context.Response.
+                        WriteAsync("Oops Something went wrong.\nThe server encountered an internal error or misconfiguration and was unable to complete your request.");
+                       //Log error
+                   });
+               });
             }
 
             app.UseHttpsRedirection();
