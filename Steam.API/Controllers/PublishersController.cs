@@ -18,10 +18,10 @@ namespace Steam.API.Controllers
         private readonly IPublisherService _publisherService;
         private readonly IMapper _autoMapper;
 
-        public PublishersController(IPublisherService publisherService, IMapper _autoMapper)
+        public PublishersController(IPublisherService publisherService, IMapper autoMapper)
         {
             this._publisherService = publisherService ?? throw new ArgumentNullException(nameof(publisherService));
-            this._autoMapper = _autoMapper ?? throw new ArgumentNullException(nameof(_autoMapper));
+            this._autoMapper = autoMapper ?? throw new ArgumentNullException(nameof(autoMapper));
         }
 
         [HttpGet("")]
@@ -44,6 +44,16 @@ namespace Steam.API.Controllers
             var publisherDto = _autoMapper.Map<PublisherDTO>(publisherEntitie);
             return Ok(publisherDto);
         }
+
+        // [HttpPost("")]
+        // public ActionResult<PublisherDTO> PostPublisher(PublisherForCreationDTO model)
+        // {
+        //     var publisherEntitie = _autoMapper.Map<Publisher>(model);
+        //     _publisherService.Insert(publisherEntitie);
+        //     _publisherService.Save();
+        //     var publisherResponse = _autoMapper.Map<PublisherDTO>(publisherEntitie);
+        //     return CreatedAtRoute("GetPublisherById", new { id = publisherResponse.PublisherId }, publisherResponse);
+        // }
 
         [HttpPost("")]
         public ActionResult<PublisherDTO> PostPublisher(PublisherForCreationDTO model)

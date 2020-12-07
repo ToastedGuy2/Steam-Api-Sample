@@ -8,7 +8,7 @@ namespace Steam.Repositories
     public interface IPublisherRepository : IGenericRepository<Publisher>
     {
         IEnumerable<Publisher> GetPublishersFiltered(string name);
-        // bool DoesPublisherExist(Guid Id);
+        bool DoesPublisherExist(Guid publisherId);
 
     }
 }

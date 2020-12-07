@@ -12,7 +12,7 @@ namespace Steam.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid PublisherId { get; set; }
         public string Name { get; set; }
-        public ICollection<Game> GamesDeveloped { get; set; }
+        public ICollection<Game> GamesPublished { get; set; }
          = new List<Game>();
     }
 }

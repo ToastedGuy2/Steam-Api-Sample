@@ -12,6 +12,7 @@ namespace Steam.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid GameId { get; set; }
         public string Name { get; set; }
+        public double Price { get; set; }
         public DateTimeOffset ReleaseDate { get; set; }
         public Guid PublisherId { get; set; }
         [ForeignKey("PublisherId")]
@@ -19,6 +20,6 @@ namespace Steam.Entities
         public ICollection<UserGame> UsersWhoBoughtTheGame { get; set; }
          = new List<UserGame>();
         public ICollection<GameGenre> Genres { get; set; }
-= new List<GameGenre>();
+        = new List<GameGenre>();
     }
 }

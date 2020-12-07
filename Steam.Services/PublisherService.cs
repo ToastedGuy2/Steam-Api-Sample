@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Steam.Entities;
 using Steam.Repositories;
@@ -8,16 +9,21 @@ namespace Steam.Services
 {
     public class PublisherService : GenericService<Publisher>, IPublisherService
     {
-        private readonly IPublisherRepository publisherRepository;
+        private readonly IPublisherRepository _publisherRepository;
 
         public PublisherService(IGenericRepository<Publisher> genericRepository, IPublisherRepository publisherRepository) : base(genericRepository)
         {
-            this.publisherRepository = publisherRepository;
+            this._publisherRepository = publisherRepository;
+        }
+
+        public bool DoesPublisherExist(Guid publisherId)
+        {
+            return _publisherRepository.DoesPublisherExist(publisherId);
         }
 
         public IEnumerable<Publisher> GetPublishersFiltered(string name)
         {
-            return publisherRepository.GetPublishersFiltered(name);
+            return _publisherRepository.GetPublishersFiltered(name);
         }
     }
 }
