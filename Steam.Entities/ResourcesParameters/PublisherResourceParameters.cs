@@ -1,4 +1,4 @@
-namespace Steam.API.ResourcesParameters
+namespace Steam.Entities.ResourcesParameters
 {
     public class PublisherResourceParameters
     {

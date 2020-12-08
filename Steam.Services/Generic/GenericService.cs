@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Steam.Repositories.Generic;
 
@@ -9,7 +10,8 @@ namespace Steam.Services.Generic
 
         public GenericService(IGenericRepository<T> genericRepository)
         {
-            _genericRepository = genericRepository;
+            this._genericRepository = genericRepository ?? throw new ArgumentNullException(nameof(genericRepository));
+
         }
 
         public IEnumerable<T> GetAll()

@@ -47,6 +47,12 @@ namespace Steam.API
             services.AddScoped<IGenericService<Publisher>, GenericService<Publisher>>();
             services.AddScoped<IPublisherRepository, PublisherRepository>();
             services.AddScoped<IPublisherService, PublisherService>();
+
+
+            services.AddScoped<IGenericRepository<Game>, GenericRepository<Game>>();
+            services.AddScoped<IGenericService<Game>, GenericService<Game>>();
+            services.AddScoped<IGameRepository, GameRepository>();
+            services.AddScoped<IGameService, GameService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

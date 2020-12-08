@@ -6,6 +6,8 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Steam.API.Models;
 using Steam.Entities;
+using Steam.Entities.ResourcesParameters;
+using Steam.Services;
 using Steam.Services.Generic;
 namespace Steam.API.Controllers
 {
@@ -13,41 +15,68 @@ namespace Steam.API.Controllers
     [ApiController]
     public class GamesController : ControllerBase
     {
-        private readonly IGenericService<Publisher> genericService;
-        private readonly IMapper autoMapper;
+        private readonly IPublisherService _publisherService;
+        private readonly IGameService _gameService;
+        private readonly IMapper _autoMapper;
 
-        public GamesController(IGenericService<Publisher> genericService, IMapper autoMapper)
+        public GamesController(IPublisherService publisherService, IGameService gameService, IMapper autoMapper)
         {
-            this.genericService = genericService ?? throw new ArgumentNullException(nameof(genericService));
-            this.autoMapper = autoMapper ?? throw new ArgumentNullException(nameof(autoMapper));
+            this._publisherService = publisherService ?? throw new ArgumentNullException(nameof(publisherService));
+            this._gameService = gameService ?? throw new ArgumentNullException(nameof(gameService));
+            this._autoMapper = autoMapper ?? throw new ArgumentNullException(nameof(autoMapper));
         }
 
         [HttpGet("")]
-        public ActionResult<IEnumerable<Publisher>> GetPublishers()
+        public ActionResult<IEnumerable<Game>> GetGames(Guid publisherId, [FromQuery] GameResourceParameters gameResourceParameters)
         {
-            return new List<Publisher> { };
+            if (!_publisherService.DoesPublisherExist(publisherId))
+            {
+                return NotFound();
+            }
+            var gamesEntities = _gameService.GetGamesByPublisherId(publisherId, gameResourceParameters);
+            var gamesDtos = _autoMapper.Map<IEnumerable<GameDTO>>(gamesEntities);
+            return Ok(gamesDtos);
         }
 
-        [HttpGet("{gameId}")]
-        public ActionResult<Publisher> GetPublisherById(Guid gameId)
+        [HttpGet("{gameId}", Name = "GetGameById")]
+        public ActionResult<Game> GetGameById(Guid publisherId, Guid gameId)
         {
-            return null;
+            if (!_publisherService.DoesPublisherExist(publisherId))
+            {
+                return NotFound();
+            }
+            var gameEntitie = _gameService.GetById(gameId);
+            if (gameEntitie == null)
+            {
+                return NotFound();
+            }
+            var gameDto = _autoMapper.Map<GameDTO>(gameEntitie);
+            return Ok(gameDto);
         }
 
         [HttpPost("")]
-        public ActionResult<Publisher> PostPublisher(Publisher model)
+        public ActionResult<GameDTO> PostGame(GameForCreationDTO model, Guid publisherId)
         {
-            return null;
+            if (!_publisherService.DoesPublisherExist(publisherId))
+            {
+                return NotFound();
+            }
+
+            var gameEntitie = _autoMapper.Map<Game>(model);
+            _gameService.Insert(gameEntitie);
+            _gameService.Save();
+            var gameDto = _autoMapper.Map<GameDTO>(gameEntitie);
+            return CreatedAtRoute("GetGameById", new { publisherId = publisherId, gameId = gameDto.GameId }, gameDto);
         }
 
         [HttpPut("{gameId}")]
-        public IActionResult PutPublisher(Guid gameId, Publisher model)
+        public IActionResult PutGame(Guid gameId, Game model)
         {
             return NoContent();
         }
 
         [HttpDelete("{gameId}")]
-        public ActionResult<Publisher> DeletePublisherById(Guid gameId)
+        public ActionResult<Game> DeleteGameById(Guid gameId)
         {
             return null;
         }
