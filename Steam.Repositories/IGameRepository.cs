@@ -10,6 +10,6 @@ namespace Steam.Repositories
     public interface IGameRepository : IGenericRepository<Game>
     {
         IEnumerable<Game> GetGamesByPublisherId(Guid publisherId, GameResourceParameters gameResourceParameters);
-        // bool DoesGameExist(Guid gameId);
+        Game GetGame(Guid publisherId, Guid gameId);
     }
 }
