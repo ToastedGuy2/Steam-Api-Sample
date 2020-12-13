@@ -14,10 +14,19 @@ namespace Steam.Repositories
         {
         }
 
-        // public bool DoesGameExist(Guid gameId)
-        // {
-        //     return table.Any(g => g.GameId == gameId);
-        // }
+        public Game GetGame(Guid publisherId, Guid gameId)
+        {
+            if (publisherId == Guid.Empty)
+            {
+                throw new ArgumentNullException(nameof(publisherId));
+            }
+            if (gameId == Guid.Empty)
+            {
+                throw new ArgumentNullException(nameof(gameId));
+            }
+            return table.SingleOrDefault(g => g.PublisherId == publisherId && g.GameId == gameId);
+        }
+
 
         public IEnumerable<Game> GetGamesByPublisherId(Guid publisherId, GameResourceParameters gameResourceParameters)
         {

@@ -1,0 +1,905 @@
+{
+	"info": {
+		"_postman_id": "eb06f633-7855-4f78-974b-8ea1df3d86fc",
+		"name": "Steam Sample API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Publishers",
+			"item": [
+				{
+					"name": "Get Publishers",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:5001/api/Publishers",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Publishers"
+							]
+						},
+						"description": "Get all Publishers"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Publishers (related to a Name)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:5001/api/Publishers?name=soft",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Publishers"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "soft"
+								}
+							]
+						},
+						"description": "Get publishers who contains a specific string in it's name."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Publishers (Empty name parameter)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:5001/api/Publishers?name= ",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Publishers"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": " "
+								}
+							]
+						},
+						"description": "Get publishers who contains a specific string in it's name."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Publisher",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:5001/api/Publishers/97f4b78d-5752-413f-9f2e-0bfa4947d490",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Publishers",
+								"97f4b78d-5752-413f-9f2e-0bfa4947d490"
+							]
+						},
+						"description": "Get a Single Publisher by it's Id."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Publisher (application/json)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:5001/api/Publishers/97f4b78d-5752-413f-9f2e-0bfa4947d490",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Publishers",
+								"97f4b78d-5752-413f-9f2e-0bfa4947d490"
+							]
+						},
+						"description": "Get a response body formatted in JSON"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Publisher (application/xml)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/xml"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:5001/api/Publishers/97f4b78d-5752-413f-9f2e-0bfa4947d490",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Publishers",
+								"97f4b78d-5752-413f-9f2e-0bfa4947d490"
+							]
+						},
+						"description": "Get a response body formatted in XML"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Publisher (Not Acceptable)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/javascript"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:5001/api/Publishers/97f4b78d-5752-413f-9f2e-0bfa4947d490",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Publishers",
+								"97f4b78d-5752-413f-9f2e-0bfa4947d490"
+							]
+						},
+						"description": "Throws a 406 Status Code - Not Acceptable. Since the api cannot format the response in the formatted requested by the Accept Header"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Publisher (Unexisting)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5001/api/Publishers/aafbf67e-1aa1-49f8-8463-da56909056e6",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Publishers",
+								"aafbf67e-1aa1-49f8-8463-da56909056e6"
+							]
+						},
+						"description": "It doesn't exist on the database. So it should return 404 Status Code (Not Found)"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Publisher (Bad Request)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5001/api/Publishers/stringId",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Publishers",
+								"stringId"
+							]
+						},
+						"description": "It throws a 400 Status Code - Bad Request. Since the Id is a String, and not a GUID."
+					},
+					"response": []
+				},
+				{
+					"name": "Post Publisher (application/json)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Name\" : \"Bethesda\"\n}"
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/Publishers",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Publishers"
+							]
+						},
+						"description": "Insert a new Publisher"
+					},
+					"response": []
+				},
+				{
+					"name": "Post Publisher (application/xml) ",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<PublisherForCreationDTO xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns=\"http://schemas.datacontract.org/2004/07/Steam.API.Models\">\n    <Name>Bethesda</Name>\n</PublisherForCreationDTO>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/Publishers",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Publishers"
+							]
+						},
+						"description": "Send a Request with an XML Request body"
+					},
+					"response": []
+				},
+				{
+					"name": "Post Publisher (No Request Body)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:5001/api/Publishers",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Publishers"
+							]
+						},
+						"description": "Send a Request with an empty request body. It should throw a 400 Status Code - Bad Request"
+					},
+					"response": []
+				},
+				{
+					"name": "Post Publisher (Invalid Request Body) ",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Name\" : true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/Publishers",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Publishers"
+							]
+						},
+						"description": "Send a Request with an empty request body. It should throw a 400 Status Code - Bad Request"
+					},
+					"response": []
+				},
+				{
+					"name": "HEAD Publishers",
+					"request": {
+						"method": "HEAD",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5001/api/Publishers",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Publishers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OPTIONS Publishers",
+					"request": {
+						"method": "OPTIONS",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5001/api/Publishers",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Publishers"
+							]
+						},
+						"description": "Get a HTTP Response with a extra header \"Add\" and it inclues de HTTP Verbs - Methods, my resource supports"
+					},
+					"response": []
+				},
+				{
+					"name": "Post Publisher (with a collection of games)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Name\": \"Bethesda\",\n    \"GamesPublished\": [\n        {\n            \"name\": \"Doom Eternal\",\n            \"price\": 59.99,\n            \"releaseDate\": \"2020-03-20T00:00:00-06:00\"\n        },\n        {\n            \"name\": \"Wolfenstein: Youngblood\",\n            \"price\": 29.99,\n            \"releaseDate\": \"2019-07-26T00:00:00-06:00\"\n        },\n        {\n            \"name\": \"Fallout 76\",\n            \"price\": 100.00,\n            \"releaseDate\": \"2018-11-14T00:00:00-06:00\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/Publishers",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Publishers"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Games",
+			"item": [
+				{
+					"name": "Get Games By Publisher",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5001/api/Publishers/9d30ed06-41be-4e27-b16c-34e65015dcc8/Games",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Publishers",
+								"9d30ed06-41be-4e27-b16c-34e65015dcc8",
+								"Games"
+							]
+						},
+						"description": "Get games from a publisher sort by releasedDate property in Descending Order. So the user can see the last games release."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Games By Publisher (unexisting publisher)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5001/api/Publishers/2a0cdf39-e771-43bf-8ae5-8ceb7493bf1c/Games",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Publishers",
+								"2a0cdf39-e771-43bf-8ae5-8ceb7493bf1c",
+								"Games"
+							]
+						},
+						"description": "Return Not Found , since I'm trying to get the Games from an unexisting publisher."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Games By Publisher (invalid publisherId)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5001/api/Publishers/2a0cdf39-e771-43bf-8ae5-8ceb7493bf1/Games",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Publishers",
+								"2a0cdf39-e771-43bf-8ae5-8ceb7493bf1",
+								"Games"
+							]
+						},
+						"description": "Return Bad Request , since the publisherId is not a valid GUID, who decides it's valid or invalid, the parameter from the action method, in this case [GET], expects a GUID publisherId, and if they don't match , then it throws the Bad Request"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Games By Publisher (sort by name)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5001/api/Publishers/9d30ed06-41be-4e27-b16c-34e65015dcc8/Games?sortBy=name",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Publishers",
+								"9d30ed06-41be-4e27-b16c-34e65015dcc8",
+								"Games"
+							],
+							"query": [
+								{
+									"key": "sortBy",
+									"value": "name"
+								}
+							]
+						},
+						"description": "Get games for a publisher. Sort by the name property. The URI should include the sortBy=name query parameter."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Games By Publisher (sort by name) in DESCENDING ORDER",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5001/api/Publishers/9d30ed06-41be-4e27-b16c-34e65015dcc8/Games?sortBy=name&inDescendingOrder=true",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Publishers",
+								"9d30ed06-41be-4e27-b16c-34e65015dcc8",
+								"Games"
+							],
+							"query": [
+								{
+									"key": "sortBy",
+									"value": "name"
+								},
+								{
+									"key": "inDescendingOrder",
+									"value": "true"
+								}
+							]
+						},
+						"description": "Get games for a publisher. Sort by the name property in descending order. The URI should include the sortBy=name&inDescendingOrder=true query parameters."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Games By Publisher (sort by price)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5001/api/Publishers/9d30ed06-41be-4e27-b16c-34e65015dcc8/Games?sortBy=price",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Publishers",
+								"9d30ed06-41be-4e27-b16c-34e65015dcc8",
+								"Games"
+							],
+							"query": [
+								{
+									"key": "sortBy",
+									"value": "price"
+								}
+							]
+						},
+						"description": "Get games for a publisher. Sort by the price property. The URI should include the sortBy=price query parameter."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Games By Publisher (sort by price) in DESCENDING ORDER",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5001/api/Publishers/9d30ed06-41be-4e27-b16c-34e65015dcc8/Games?sortBy=price&inDescendingOrder=true",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Publishers",
+								"9d30ed06-41be-4e27-b16c-34e65015dcc8",
+								"Games"
+							],
+							"query": [
+								{
+									"key": "sortBy",
+									"value": "price"
+								},
+								{
+									"key": "inDescendingOrder",
+									"value": "true"
+								}
+							]
+						},
+						"description": "Get games for a publisher. Sort by price property in Descending Order. The URI should include the sortBy=price&inDescendingOrder=true query parameters."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Games By Publisher (sort by Release Date) ",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5001/api/Publishers/9d30ed06-41be-4e27-b16c-34e65015dcc8/Games?sortBy=releaseDate",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Publishers",
+								"9d30ed06-41be-4e27-b16c-34e65015dcc8",
+								"Games"
+							],
+							"query": [
+								{
+									"key": "sortBy",
+									"value": "releaseDate"
+								}
+							]
+						},
+						"description": "Get games for a publisher. Sort by releaseDate property. The URI should include the sortBy=releaseDate query parameter."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Games By Publisher (sort by a non game property)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5001/api/Publishers/9d30ed06-41be-4e27-b16c-34e65015dcc8/Games?sortBy=none",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Publishers",
+								"9d30ed06-41be-4e27-b16c-34e65015dcc8",
+								"Games"
+							],
+							"query": [
+								{
+									"key": "sortBy",
+									"value": "none"
+								}
+							]
+						},
+						"description": "Get games for a publisher. In this case it cannot be sorted since the propety doesn't match name,price or releaseDate property. So it returns the default game list but sorted by releasedDate property in descendingOrder. \n\nIt's like executing Get Games By Publisher, but with a different URI"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Game",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5001/api/Publishers/9d30ed06-41be-4e27-b16c-34e65015dcc8/Games/84f75268-f146-4d74-ae4b-9f403ffc8b5d",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Publishers",
+								"9d30ed06-41be-4e27-b16c-34e65015dcc8",
+								"Games",
+								"84f75268-f146-4d74-ae4b-9f403ffc8b5d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Game (unexisting publisher)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5001/api/Publishers/77129ab4-efdc-49fa-8a08-3d880c1b4c23/Games/84f75268-f146-4d74-ae4b-9f403ffc8b5d",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Publishers",
+								"77129ab4-efdc-49fa-8a08-3d880c1b4c23",
+								"Games",
+								"84f75268-f146-4d74-ae4b-9f403ffc8b5d"
+							]
+						},
+						"description": "Throw Not Found();"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Game (unexisting game)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5001/api/Publishers/9d30ed06-41be-4e27-b16c-34e65015dcc8/Games/77129ab4-efdc-49fa-8a08-3d880c1b4c23",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Publishers",
+								"9d30ed06-41be-4e27-b16c-34e65015dcc8",
+								"Games",
+								"77129ab4-efdc-49fa-8a08-3d880c1b4c23"
+							]
+						},
+						"description": "Return Not Found()"
+					},
+					"response": []
+				},
+				{
+					"name": "POST Game",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Shadow of the Tomb Raider\",\n    \"price\": 59.99,\n    \"releaseDate\": \"2018-09-14T00:00:00-06:00\",\n    \"publisherId\": \"589c2fd3-2a74-4f4e-90f7-400d39edcb38\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/Publishers/589c2fd3-2a74-4f4e-90f7-400d39edcb38/Games",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Publishers",
+								"589c2fd3-2a74-4f4e-90f7-400d39edcb38",
+								"Games"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Game (nonexisting publisher)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Shadow of the Tomb Raider\",\n    \"price\": 59.99,\n    \"releaseDate\": \"2018-09-14T00:00:00-06:00\",\n    \"publisherId\": \"589c2fd3-2a74-4f4e-90f7-400d39edcb38\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/Publishers/589c2fd3-2a74-4f4e-90f5-400d39edcb38/Games",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Publishers",
+								"589c2fd3-2a74-4f4e-90f5-400d39edcb38",
+								"Games"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "PublisherCollections",
+			"item": [
+				{
+					"name": "Post PublisherCollection",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n        \"Name\": \"Activision\"\n    },\n    {\n        \"Name\": \"Activision #2\"\n    },\n    {\n        \"Name\": \"Activision #3\"\n    },\n    {\n        \"Name\": \"Activision #4\"\n    }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/publisherCollections",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"publisherCollections"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

@@ -11,6 +11,7 @@ namespace Steam.Entities
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid GenreId { get; set; }
+        [Required]
         public string Name { get; set; }
         public ICollection<GameGenre> Games { get; set; }
          = new List<GameGenre>();

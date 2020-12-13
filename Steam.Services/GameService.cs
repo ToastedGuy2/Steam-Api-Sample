@@ -17,6 +17,11 @@ namespace Steam.Services
             this._gameRepository = gameRepository ?? throw new ArgumentNullException(nameof(gameRepository));
         }
 
+        public Game GetGame(Guid publisherId, Guid gameId)
+        {
+            return _gameRepository.GetGame(publisherId, gameId);
+        }
+
         public IEnumerable<Game> GetGamesByPublisherId(Guid publisherId, GameResourceParameters gameResourceParameters)
         {
             return _gameRepository.GetGamesByPublisherId(publisherId, gameResourceParameters);

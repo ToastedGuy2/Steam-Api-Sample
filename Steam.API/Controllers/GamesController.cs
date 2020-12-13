@@ -45,7 +45,7 @@ namespace Steam.API.Controllers
             {
                 return NotFound();
             }
-            var gameEntitie = _gameService.GetById(gameId);
+            var gameEntitie = _gameService.GetGame(publisherId, gameId);
             if (gameEntitie == null)
             {
                 return NotFound();
@@ -63,6 +63,7 @@ namespace Steam.API.Controllers
             }
 
             var gameEntitie = _autoMapper.Map<Game>(model);
+            gameEntitie.PublisherId = publisherId;
             _gameService.Insert(gameEntitie);
             _gameService.Save();
             var gameDto = _autoMapper.Map<GameDTO>(gameEntitie);

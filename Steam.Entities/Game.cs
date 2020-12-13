@@ -10,10 +10,17 @@ namespace Steam.Entities
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Required]
         public Guid GameId { get; set; }
+        [Required]
         public string Name { get; set; }
+        [Required]
+        public string Description { get; set; }
+        [Required]
         public double Price { get; set; }
+        [Required]
         public DateTimeOffset ReleaseDate { get; set; }
+        [Required]
         public Guid PublisherId { get; set; }
         [ForeignKey("PublisherId")]
         public Publisher Publisher { get; set; }

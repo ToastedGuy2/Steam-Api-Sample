@@ -9,5 +9,6 @@ namespace Steam.Services
     public interface IGameService : IGenericService<Game>
     {
         IEnumerable<Game> GetGamesByPublisherId(Guid publisherId, GameResourceParameters gameResourceParameters);
+        Game GetGame(Guid publisherId, Guid gameId);
     }
 }
