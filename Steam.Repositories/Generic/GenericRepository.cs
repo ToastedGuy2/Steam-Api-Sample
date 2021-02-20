@@ -22,10 +22,6 @@ namespace Steam.Repositories.Generic
 
         public virtual T GetById(object id)
         {
-            if (id == null)
-            {
-                throw new ArgumentNullException(nameof(id));
-            }
             return table.Find(id);
         }
 
@@ -49,12 +45,13 @@ namespace Steam.Repositories.Generic
 
         public virtual void Delete(object id)
         {
-            if (id == null)
+
+            var entityToDelete = table.Find(id);
+            if (entityToDelete == null)
             {
-                throw new ArgumentNullException(nameof(id));
+                throw new ArgumentNullException(nameof(entityToDelete));
             }
-            var entity = table.Find(id);
-            table.Remove(entity);
+            table.Remove(entityToDelete);
         }
 
         public void Save()
